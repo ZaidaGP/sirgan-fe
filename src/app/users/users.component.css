@@ -1,0 +1,35 @@
+.container{
+    /* margin: 4px; */
+    /* padding: 4px; */
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;  
+}
+
+.btn{
+    margin-bottom: 5px;
+}
+
+table th{
+    color: #a9845a;
+    font-family:'Times New Roman', Times, serif;
+}
+
+/* table tr:nth-child(even){
+    background-color :#adc178;
+} */
+
+table tr:nth-child(odd){
+    background-color :#adc178;
+}
+
+
+main1{
+    color: #a9845a;
+}
+
+main2{
+    color: #797d62;
+}
+
+main3{
+    color: #adc178;
+}
