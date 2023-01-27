@@ -1,0 +1,24 @@
+.title-h2{
+
+    font-weight: 700!important;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.farm-title{
+    color: white;
+}
+
+.btn-card{
+
+    margin: 5px;
+}
+
+.mat-mdc-card{
+    background-color: #a9845a
+}
+
+.mdc-card__media{
+    margin-bottom: 9px;
+}
+
+  
