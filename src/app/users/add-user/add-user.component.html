@@ -1,40 +1,50 @@
 <div class="container">
 
-  <a routerLink="/app-users" class="btn btn-primary">Regresar</a>
-  
   <h1 class="text-center">Registro de Usuarios</h1>
 
-  <form class="row g-3 needs-validation" novalidate>
+  <a routerLink="/app-users" class="btn btn-primary">Regresar</a>
+
+  <form class="row g-3 needs-validation" [formGroup]="myForm" (ngSubmit)="addUser()" novalidate>
     <div class="col-md-4">
       <label for="name" class="form-label">Nombre</label>
-      <input type="text" class="form-control" name="name" id="name" value="" [(ngModel)]="name"  required minlength="2">
-      <div class="valid-feedback">
-        Looks good!
+      <input type="text" formControlName="name" class="form-control" name="name" id="name">
+      <div class="text-danger" *ngIf="myForm.get('name')?.errors && myForm.get('name')?.dirty">
+        <p *ngIf="myForm.get('name')?.hasError('required')">El campo es requerido</p>
+        <p *ngIf="myForm.get('name')?.hasError('maxlength')">El nombre no puede ser mayor a 30 caractéres</p>
+        <!-- <p *ngIf="myForm.get('name')?.hasError('required')">El campo es requerido</p> -->
       </div>
+
     </div>
 
     <div class="col-md-4">
       <label for="lastname1" class="form-label">Primer Apellido</label>
-      <input type="text" class="form-control" name="lastname1" id="lastname1" value="" [(ngModel)]="lastname1" required>
-      <div class="valid-feedback">
-        Looks good!
+      <input type="text" formControlName="lastname1" class="form-control" name="lastname1" id="lastname1">
+      <div class="text-danger" *ngIf="myForm.get('lastname1')?.errors && myForm.get('lastname1')?.dirty">
+        <p *ngIf="myForm.get('lastname1')?.hasError('required')">El campo es requerido</p>
+        <p *ngIf="myForm.get('lastname1')?.hasError('maxlength')">El primer apellido no puede ser mayor a 30 caractéres
+        </p>
       </div>
     </div>
     <div class="col-md-4">
       <label for="lastname2" class="form-label">Segundo Apellido</label>
-      <input type="text" class="form-control" name="lastname2" id="lastname2" value="Otto" [(ngModel)]="lastname2" required>
-      <div class="valid-feedback">
-        Looks good!
+      <input type="text" formControlName="lastname2" class="form-control" name="lastname2" id="lastname2" value="Otto">
+      <div class="text-danger" *ngIf="myForm.get('lastname2')?.errors && myForm.get('lastname2')?.dirty">
+        <p *ngIf="myForm.get('lastname2')?.hasError('required')">El campo es requerido</p>
+        <p *ngIf="myForm.get('lastname2')?.hasError('maxlength')">El segundo apellido no puede ser mayor a 30 caractéres</p>
       </div>
     </div>
     <div class="col-md-4">
       <label for="birthday">Fecha de Nacimiento</label>
-      <input id="birthday" class="form-control" name="birthday" type="date" [(ngModel)]="birthday"  />
+      <input formControlName="birthday" id="birthday" class="form-control" name="birthday" type="date" />
+      <div class="text-danger" *ngIf="myForm.get('birthday')?.errors && myForm.get('birthday')?.dirty">
+        <p *ngIf="myForm.get('birthday')?.hasError('required')">El campo es requerido</p>
+        <!-- <p *ngIf="myForm.get('birthday')?.hasError('maxlength')">La fecha no puede ser menor a la fecha actual</p> -->
+      </div>
     </div>
     <div class="col-md-4">
       <label for="province" class="form-label">Provincia</label>
-      <select class="form-select form-control" name="province" id="province" aria-label="Default select example" [(ngModel)]="province" >
-        <option selected>Seleccionar</option>
+      <select formControlName="province" class="form-select form-control" name="province" id="province">
+        <option value="" selected>Seleccionar</option>
         <option value="San Jose">San José</option>
         <option value="Alajuela">Alajuela</option>
         <option value="Heredia">Heredia</option>
@@ -43,65 +53,78 @@
         <option value="Puntarenas">Puntarenas</option>
         <option value="Limon">Limón</option>
       </select>
-      <div class="invalid-feedback">
-        Please select a valid state.
+      <div class="text-danger" *ngIf="myForm.get('province')?.errors && myForm.get('province')?.dirty">
+        <p *ngIf="myForm.get('province')?.hasError('required')">El campo es requerido</p>
+        <!-- <p *ngIf="myForm.get('province')?.hasError('maxlength')">La fecha no puede ser menor a la fecha actual</p> -->
       </div>
     </div>
     <div class="col-md-4">
       <label for="canton" class="form-label">Cantón</label>
-      <input type="text" class="form-control"  name="canton"  id="canton" [(ngModel)]="canton"  required>
-      <div class="invalid-feedback">
-        Please provide a valid city.
+      <input type="text" formControlName="canton" class="form-control" name="canton" id="canton">
+      <div class="text-danger" *ngIf="myForm.get('canton')?.errors && myForm.get('canton')?.dirty">
+        <p *ngIf="myForm.get('canton')?.hasError('required')">El campo es requerido</p>
+        <p *ngIf="myForm.get('canton')?.hasError('maxlength')">El cantón no puede ser mayor a x caractéres</p>
       </div>
     </div>
     <div class="col-md-4">
       <label for="address" class="form-label">Direccion</label>
-      <input type="text" class="form-control"  name="canton"  id="address" [(ngModel)]="address"  required>
-      <div class="invalid-feedback">
-        Please provide a valid zip.
+      <input type="text" formControlName="address" class="form-control" name="address" id="address">
+      <div class="text-danger" *ngIf="myForm.get('address')?.errors && myForm.get('address')?.dirty">
+        <p *ngIf="myForm.get('address')?.hasError('required')">El campo es requerido</p>
+        <p *ngIf="myForm.get('address')?.hasError('maxlength')">El cantón no puede ser mayor a x caractéres</p>
       </div>
     </div>
     <div class="col-md-4">
       <label for="phoneNumber" class="form-label">Telefono</label>
-      <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" [(ngModel)]="phoneNumber"  required>
-      <div class="invalid-feedback">
-        Please provide a valid zip.
+      <input type="text" formControlName="phoneNumber" class="form-control" name="phoneNumber" id="phoneNumber">
+      <div class="text-danger" *ngIf="myForm.get('phoneNumber')?.errors && myForm.get('phoneNumber')?.dirty">
+        <p *ngIf="myForm.get('phoneNumber')?.hasError('required')">El campo es requerido</p>
+        <p *ngIf="myForm.get('phoneNumber')?.hasError('maxlength')">El cantón no puede ser mayor a x caractéres</p>
       </div>
     </div>
     <div class="col-md-4">
       <label for="email" class="form-label">Correo Electronico</label>
-      <input type="email" class="form-control" name="email" id="email" [(ngModel)]="email"  required>
-      <div class="invalid-feedback">
-        Please provide a valid zip.
+      <input type="email" formControlName="email" class="form-control" name="email" id="email">
+      <div class="text-danger" *ngIf="myForm.get('email')?.errors && myForm.get('email')?.dirty">
+        <p *ngIf="myForm.get('email')?.hasError('required')">El campo es requerido</p>
+        <p *ngIf="myForm.get('email')?.hasError('maxlength')">El cantón no puede ser mayor a x caractéres</p>
+        <p *ngIf="myForm.get('email')?.hasError('email')">El email no es válido</p>
       </div>
     </div>
 
     <div class="col-md-4">
       <label for="password" class="form-label">Contraseña</label>
-      <input type="password" class="form-control" name="password" id="password"[(ngModel)]="password" required>
-      <div class="invalid-feedback">
-        Please provide a valid zip.
+      <input type="password" formControlName="password" class="form-control" name="password" id="password">
+      <div class="text-danger" *ngIf="myForm.get('password')?.errors && myForm.get('password')?.dirty">
+        <p *ngIf="myForm.get('password')?.hasError('required')">El campo es requerido</p>
+        <p *ngIf="myForm.get('password')?.hasError('minlength')">La contraseña debe contener almenos 8</p>
+        <p *ngIf="myForm.get('password')?.hasError('maxlength')">El cantón no puede ser mayor a x caractéres</p>
       </div>
     </div>
     <div class="col-md-4">
       <label for="role" class="form-label">Rol</label>
-      <select class="form-select form-control" name="role" id="role" aria-label="Default select example" [(ngModel)]="role" >
-        <option selected>Seleccionar</option>
+      <select formControlName="role" class="form-select form-control" name="role" id="role">
+        <option value="" selected>Seleccionar</option>
         <option value="super">Super</option>
         <option value="admin">Admin</option>
         <option value="viewer">Viewer</option>
       </select>
-      <div class="invalid-feedback">
-        Please provide a valid zip.
+      <div class="text-danger" *ngIf="myForm.get('role')?.errors && myForm.get('role')?.dirty">
+        <p *ngIf="myForm.get('role')?.hasError('required')">El campo es requerido</p>
+        <p *ngIf="myForm.get('role')?.hasError('maxlength')">El cantón no puede ser mayor a x caractéres</p>
       </div>
     </div>
     <div class="col-md-4">
       <label for="status" class="form-label">Estado</label>
-      <select class="form-select form-control" name="status" id="status" aria-label="Default select example" [(ngModel)]="status" >
-        <option selected>Seleccionar</option>
+      <select formControlName="status" class="form-select form-control" name="status" id="status">
+        <option value="" selected>Seleccionar</option>
         <option value="1">Activo</option>
         <option value="0">Inactivo</option>
       </select>
+      <div class="text-danger" *ngIf="myForm.get('status')?.errors && myForm.get('status')?.dirty">
+        <p *ngIf="myForm.get('status')?.hasError('required')">El campo es requerido</p>
+        <p *ngIf="myForm.get('status')?.hasError('maxlength')">El cantón no puede ser mayor a x caractéres</p>
+      </div>
     </div>
 
     <!-- <div class="col-12">
@@ -116,7 +139,7 @@
       </div>
     </div> -->
     <div class="col-12">
-      <a (click)="addUser()" class="btn btn-primary"> Agregar</a>
+      <button type="submit" class="btn btn-primary" [disabled]="myForm.invalid"> Agregar</button>
     </div>
   </form>
 

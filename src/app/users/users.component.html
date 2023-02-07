@@ -1,38 +1,60 @@
 <div class="container">
-
   <h1 class="text-center">Módulo de Usuarios</h1>
 
   <a routerLink="/add-user" class="btn btn-primary">Agregar</a>
 
-  <table class="table table-striped">
-    <thead>
-      <th>#</th>
-      <th>Nombre</th>
-      <th>Apellidos</th>
-      <th>Email</th>
-      <th>Rol</th>
-      <th>Estado</th>
-      <th>Visualizar</th>
-      <th>Editar</th>
-      <th>Deshabilitar</th>
-      <th>Eliminar</th>
-    </thead>
+  
+  <div class="outer-wrapper">
+    <div class="table-wrapper">
+      <table class="table table-striped">
+        <thead>
+          <th>#</th>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>Email</th>
+          <th>Rol</th>
+          <th>Estado</th>
+          <th>Visualizar</th>
+          <th>Editar</th>
+          <th>Habilitar</th>
+          <th>Deshabilitar</th>
+          <th>Eliminar</th>
+        </thead>
 
-    <tbody>
-      <tr *ngFor="let item of usersList$|async">
-        <td>{{item.index}}</td>
-        <td>{{item.name }}</td>
-        <td>{{item.lastName1 + ' ' + item.lastName2 }}</td>
-        <td>{{item.email}}</td>
-        <td>{{item.role}}</td>  
-        <td>{{item.status ? 'Activo' : 'Inactivo'}}</td>
-        <td><button class="btn btn-info">V</button></td>
-        <td><button class="btn btn-info">Ed</button></td>
-        <td><button class="btn btn-warning">Deshabilitar</button></td>
-        <td><button class="btn btn-danger">El</button></td>
-      </tr>
-    </tbody>
-  </table>
-
+        <tbody>
+          <tr *ngFor="let user of usersList$ | async; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.lastName1 + " " + user.lastName2 }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.status ? "Activo" : "Inactivo" }}</td>
+            <td>
+              <a class=""><mat-icon>visibility</mat-icon></a>
+            </td>
+            <td>
+              <a
+                type="button"
+                name="update-user"
+                class="btn-edit"
+                [routerLink]="['/update-user/', user.id]"
+                ><mat-icon>edit_sweep</mat-icon></a
+              >
+            </td>
+            <td>
+              <a class=""><mat-icon>sync</mat-icon></a>
+            </td>
+            <td>
+              <a class=""><mat-icon>sync_disabled</mat-icon></a>
+            </td>
+            <td>
+              <a type="button" name="delete-user" class=""
+                ><mat-icon>delete_sweep</mat-icon></a
+              >
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-

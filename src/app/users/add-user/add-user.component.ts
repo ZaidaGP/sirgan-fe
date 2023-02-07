@@ -1,73 +1,39 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SirganApiService } from 'src/app/sirgan-api.service';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
-export class AddUserComponent {
-  constructor(private service: SirganApiService) { }
+export class AddUserComponent  {
 
-  @Input() user: any;
-  id: number = 0;
-  name: string = "";
-  lastname1: string = '';
-  lastname2: string = '';
-  birthday : Date = new Date();
-  province: string = '';
-  canton: string = '';
-  address: string = '';
-  email: string = '';
-  phoneNumber: string = '';
-  password: string = '';
-  status: number = 0;
-  role: string = '';
-  registrationDate : Date = new Date();
+  myForm: FormGroup;
+  constructor(private service: SirganApiService, public fb: FormBuilder) { 
+    this.myForm = this.fb.group({
+      name: ['', [Validators.required, Validators.maxLength(30)]],
+      lastname1: ['', [Validators.required, Validators.maxLength(30)]],
+      lastname2: ['', [Validators.required, Validators.maxLength(30)]],
+      birthday: ['', [Validators.required]],
+      province: ['', [Validators.required]],
+      canton: ['', [Validators.required, Validators.maxLength(30)]],
+      address: ['', [Validators.required, Validators.maxLength(300)]],
+      phoneNumber: ['', [Validators.required, Validators.maxLength(15)]],
+      email: ['', [Validators.required, Validators.maxLength(40), Validators.email,]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
+      status: ['', [Validators.required]],
+      role: ['', [Validators.required]],
+      registrationDate: ['', ],
+    });
+  }
 
-  // ngOnInit(): void {
-  //   this.id = this.user.id;
-  //   this.name = this.user.name;
-  //   this.lastname1 = this.user.lastname1;
-  //   this.lastname2 = this.user.lastname1;
-  //   this.birthday = this.user.birthday;
-  //   this.province = this.user.province;
-  //   this.canton = this.user.canton;
-  //   this.address = this.user.address;
-  //   this.email = this.user.email;
-  //   this.phoneNumber = this.user.phoneNumber;
-  //   this.password = this.user.password;
-  //   this.status = this.user.status;
-  //   this.role = this.user.role;
-  //   this.registrationDate = this.user.registrationDate;
-  // }
+  ngOnInit() { }
 
-  addUser() {
-    var user = {
-      name: this.name,
-      lastname1 : this.lastname1,
-      lastname2 : this.lastname2,
-      birthday: this.birthday,
-      province : this.province,
-      canton : this.canton,
-      address : this.address,
-      email : this.email,
-      phoneNumber : this.phoneNumber,
-      password : this.password,
-      status : this.status,
-      role : this.role, 
-      registrationDate: this.registrationDate,
-    }
-    this.service.addUser(user).subscribe(res => {
-      // var showAddSuccess = document.getElementById('add-success-alert');
-      // if(showAddSuccess) {
-      //   showAddSuccess.style.display = "block";
-      // }
-      // setTimeout(function() {
-      //   if(showAddSuccess) {
-      //     showAddSuccess.style.display = "none"
-      //   }
-      // }, 4000);
+  addUser() {    
+    this.myForm.value.registrationDate = new Date();
+    this.service.addUser(this.myForm.value).subscribe(res => {
+      console.log(this.myForm.value);
     })
   }
 }

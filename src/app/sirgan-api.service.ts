@@ -13,7 +13,11 @@ export class SirganApiService {
   //USERS
   //get the list of users on the database
   getUsersList():Observable<any[]>{
-    return this.http.get<any>(this.sirganAPIUrl + '/Users');
+    return this.http.get<any>(this.sirganAPIUrl + '/users');
+  }
+  //get a specific user 
+  getUser(id:number):Observable<any[]>{
+    return this.http.get<any>(this.sirganAPIUrl +  `/users/${id}`);
   }
 
   //add user 
