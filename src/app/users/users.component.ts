@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {Observable} from 'rxjs';
-import { SirganApiService } from 'src/app/sirgan-api.service';
 import { Router } from '@angular/router';
+import { UserApiService } from './user-api.service';
 
 
 @Component({
@@ -13,7 +13,7 @@ export class UsersComponent {
   usersList$!:Observable<any[]>;
 
 
-  constructor (private service : SirganApiService, private router: Router){}
+  constructor (private service : UserApiService, private router: Router){}
 
  ngOnInit():void{
   this.usersList$ = this.service.getUsersList();

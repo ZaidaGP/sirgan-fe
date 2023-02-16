@@ -34,7 +34,7 @@
       </div>
       <div class="col-md-4">
         <label for="birthday">Fecha de Nacimiento</label>
-        <input formControlName="birthday" id="birthday" class="form-control" name="birthday" type="date" />
+        <input formControlName="birthday" id="birthday" class="form-control" name="birthday" type="date" value="{{birthday | date: 'yyyy-MM-dd'}}" />
         <div class="text-danger" *ngIf="myForm.get('birthday')?.errors && myForm.get('birthday')?.dirty">
           <p *ngIf="myForm.get('birthday')?.hasError('required')">El campo es requerido</p>
           <!-- <p *ngIf="myForm.get('birthday')?.hasError('maxlength')">La fecha no puede ser menor a la fecha actual</p> -->

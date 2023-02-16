@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { NavBarComponent } from './components//nav-bar/nav-bar.component';
 
 import { SirganApiService } from './sirgan-api.service';
 
@@ -13,13 +13,29 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import { HomeModule } from './home/home.module';
 import { UsersModule } from './users/users.module';
-// import { NavBarModule } from './nav-bar/nav-bar.module';
+import { LoginComponent } from './components//login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+
+/******************************************************************
+ * Load `$localize` - used if i18n tags appear in Angular templates.
+ */
+import '@angular/localize/init';
+import { SliderComponent } from './components/slider/slider.component';
+import { IndexComponent } from './components/index/index.component';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent,   
+    NavBarComponent, 
+    LoginComponent, RegisterComponent, IndexComponent,
+      
+  
    
 
   ],
@@ -29,9 +45,12 @@ import { UsersModule } from './users/users.module';
     HttpClientModule,
     BrowserAnimationsModule,
     MatIconModule,
+    FormsModule,
+    ReactiveFormsModule,
     HomeModule,
     UsersModule,
-
+    NgbModule,  
+    SliderComponent
     
   ],
   providers: [],

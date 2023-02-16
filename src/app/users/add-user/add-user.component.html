@@ -83,11 +83,11 @@
       </div>
     </div>
     <div class="col-md-4">
-      <label for="email" class="form-label">Correo Electronico</label>
+      <label for="email" class="form-label">Correo Electrónico</label>
       <input type="email" formControlName="email" class="form-control" name="email" id="email">
       <div class="text-danger" *ngIf="myForm.get('email')?.errors && myForm.get('email')?.dirty">
         <p *ngIf="myForm.get('email')?.hasError('required')">El campo es requerido</p>
-        <p *ngIf="myForm.get('email')?.hasError('maxlength')">El cantón no puede ser mayor a x caractéres</p>
+        <p *ngIf="myForm.get('email')?.hasError('maxlength')">El email no puede ser mayor a x caractéres</p>
         <p *ngIf="myForm.get('email')?.hasError('email')">El email no es válido</p>
       </div>
     </div>

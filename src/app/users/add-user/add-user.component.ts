@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SirganApiService } from 'src/app/sirgan-api.service';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { UserApiService } from '../user-api.service';
 
 @Component({
   selector: 'app-add-user',
@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class AddUserComponent  {
 
   myForm: FormGroup;
-  constructor(private service: SirganApiService, public fb: FormBuilder) { 
+  constructor(private service: UserApiService, public fb: FormBuilder) { 
     this.myForm = this.fb.group({
       name: ['', [Validators.required, Validators.maxLength(30)]],
       lastname1: ['', [Validators.required, Validators.maxLength(30)]],

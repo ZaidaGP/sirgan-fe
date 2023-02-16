@@ -1,6 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import {Observable} from 'rxjs';
-import { SirganApiService } from 'src/app/sirgan-api.service';
+import { UserApiService } from '../user-api.service';
 
 @Component({
   selector: 'app-show-user',
@@ -11,7 +11,7 @@ export class ShowUserComponent {
   usersList$!:Observable<any[]>;
 
 
-  constructor (private service : SirganApiService){}
+  constructor (private service : UserApiService){}
 
  ngOnInit():void{
   this.usersList$ = this.service.getUsersList();
